@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Results</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f1f8e9, #dcedc8);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 20px 30px;
+            background-color: #c8e6c9;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            width: 70px;
+            height: 70px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #a5d6a7;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2e7d32;
+        }
+
+        .container {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 30px 40px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+            margin: 40px 20px;
+            width: 90%;
+            max-width: 700px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .container img {
+            border-radius: 12px;
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            margin-bottom: 25px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .container img:hover {
+            transform: scale(1.02);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+            text-align: left;
+        }
+
+        li {
+            margin: 12px 0;
+            font-size: 18px;
+            color: #4e4e4e;
+            line-height: 1.6;
+            transition: background-color 0.3s, padding-left 0.3s;
+            padding: 6px 10px;
+            border-radius: 6px;
+        }
+
+        li:hover {
+            background-color: #e8f5e9;
+            padding-left: 18px;
+        }
+
+        li strong {
+            color: #1b5e20;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 25px;
+            background-color: #66bb6a;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #2e7d32;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px 20px;
+            }
+
+            .title {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='download (1).png') }}" alt="Logo">
+        </div>
+        <div class="title">Mango Diagnostics - Results</div>
+    </div>
+
+    <div class="container">
+        <img src="{{ results.image_path }}" alt="Uploaded Image">
+
+        <ul>
+            <li><strong>Mango Tree Detection:</strong> {{ results.tree }}</li>
+            <li><strong>NDVI Stress:</strong> {{ results.ndvi }}</li>
+            <li><strong>Disease:</strong> {{ results.disease }}</li>
+            <li><strong>Pest:</strong> {{ results.pest }}</li>
+            <li><strong>Weed Detected:</strong> {{ results.weed }}</li>
+        </ul>
+
+        <a class="button" href="/">Upload Another Image</a>
+    </div>
+
+</body>
+</html>
